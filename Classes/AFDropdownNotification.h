@@ -20,7 +20,6 @@
 @interface AFDropdownNotification : NSObject
 
 typedef NS_ENUM(NSInteger, AFDropdownNotificationEvent) {
-    
     AFDropdownNotificationEventTopButton,
     AFDropdownNotificationEventBottomButton,
     AFDropdownNotificationEventTap
@@ -37,6 +36,17 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) NSString *topButtonText;
 @property (nonatomic, strong) NSString *bottomButtonText;
+@property (nonatomic, strong) UIFont *titleLabelFont;
+@property (nonatomic, strong) UIColor *titleLabelColor;
+@property (nonatomic, strong) UIFont *subtitleLabelFont;
+@property (nonatomic, strong) UIColor *subtitleLabelColor;
+@property (nonatomic, strong) UIFont *buttonFont;
+@property (nonatomic, strong) UIColor *buttonFontColor;
+@property (nonatomic, strong) UIColor *buttonBackgroundColor;
+@property (nonatomic, strong) UIColor *buttonBorderColor;
+@property (nonatomic) CGFloat *buttonCornerRadius;
+@property (nonatomic) CGFloat *buttonBorderWidth;
+@property (nonatomic, assign) UIBlurEffectStyle blurEffectStyle;
 
 @property (nonatomic) BOOL isBeingShown;
 @property (nonatomic) BOOL isImageRounded;

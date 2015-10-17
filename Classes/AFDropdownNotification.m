@@ -43,34 +43,33 @@
         _notificationView.backgroundColor = [UIColor whiteColor];
         
         _titleLabel = [UILabel new];
-        _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
-        _titleLabel.textColor = [UIColor blackColor];
+        _titleLabel.font = _titleLabelFont;
+        _titleLabel.textColor = _titleLabelColor;
         
         _subtitleLabel = [UILabel new];
-        _subtitleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:13];
+        _subtitleLabel.font = _subtitleLabelFont;
         _subtitleLabel.numberOfLines = 0;
-        _subtitleLabel.textColor = [UIColor blackColor];
+        _subtitleLabel.textColor = _subtitleLabelColor;
         
         _imageView = [UIImageView new];
         _imageView.image = nil;
         
         _topButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _topButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:13];
+        _topButton.titleLabel.font = _buttonFont;
         [_topButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _topButton.adjustsImageWhenHighlighted = YES;
-        _topButton.backgroundColor = [UIColor clearColor];
-        
-        [_topButton.layer setCornerRadius:10];
-        [_topButton.layer setBorderWidth:1];
-        [_topButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
+        _topButton.backgroundColor = _buttonBackgroundColor;
+        [_topButton.layer setCornerRadius:*(_buttonCornerRadius)];
+        [_topButton.layer setBorderWidth:*(_buttonBorderWidth)];
+        [_topButton.layer setBorderColor:_buttonBorderColor.CGColor];
         [_topButton.layer setMasksToBounds:YES];
         
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _bottomButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:13];
-        [_bottomButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_bottomButton.layer setCornerRadius:10];
-        [_bottomButton.layer setBorderWidth:1];
-        [_bottomButton.layer setBorderColor:[[UIColor grayColor] CGColor]];
+        _bottomButton.titleLabel.font = _buttonFont;
+        [_bottomButton setTitleColor:_buttonFontColor forState:UIControlStateNormal];
+        [_bottomButton.layer setCornerRadius:*(_buttonCornerRadius)];
+        [_bottomButton.layer setBorderWidth:*(_buttonBorderWidth)];
+        [_bottomButton.layer setBorderColor:_buttonBackgroundColor.CGColor];
         [_bottomButton.layer setMasksToBounds:YES];
         
         _screenSize = [[UIScreen mainScreen] bounds].size;
@@ -108,7 +107,7 @@
         [[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:_notificationView];
         
         if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
-            UIVisualEffect *visualEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            UIVisualEffect *visualEffect = [UIBlurEffect effectWithStyle:_blurEffectStyle];
             UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:visualEffect];
             blurView.frame = _notificationView.bounds;
             [_notificationView addSubview:blurView];
