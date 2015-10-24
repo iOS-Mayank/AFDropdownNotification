@@ -74,7 +74,7 @@
         [_bottomButton setTitleColor:_buttonFontColor forState:UIControlStateNormal];
         [_bottomButton.layer setCornerRadius:_buttonCornerRadius];
         [_bottomButton.layer setBorderWidth:_buttonBorderWidth];
-        [_bottomButton.layer setBorderColor:_buttonBackgroundColor.CGColor];
+        [_bottomButton.layer setBorderColor:_buttonBorderColor.CGColor];
         [_bottomButton.layer setMasksToBounds:YES];
         
         _screenSize = [[UIScreen mainScreen] bounds].size;
