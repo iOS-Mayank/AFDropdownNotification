@@ -44,8 +44,8 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 @property (nonatomic, strong) UIColor *buttonFontColor;
 @property (nonatomic, strong) UIColor *buttonBackgroundColor;
 @property (nonatomic, strong) UIColor *buttonBorderColor;
-@property (nonatomic) CGFloat *buttonCornerRadius;
-@property (nonatomic) CGFloat *buttonBorderWidth;
+@property (nonatomic) CGFloat buttonCornerRadius;
+@property (nonatomic) CGFloat buttonBorderWidth;
 @property (nonatomic, assign) UIBlurEffectStyle blurEffectStyle;
 
 @property (nonatomic) BOOL isBeingShown;

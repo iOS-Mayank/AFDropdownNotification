@@ -56,24 +56,24 @@
         
         _buttonBackgroundColor = _buttonBackgroundColor ? : [UIColor clearColor];
         _buttonBorderColor = _buttonBorderColor ? : [UIColor grayColor];
-        _buttonBorderWidth = _buttonBorderWidth ? : (CGFloat *)1;
-        _buttonCornerRadius = _buttonCornerRadius ? : (CGFloat *)10;
+        _buttonBorderWidth = _buttonBorderWidth ? : 1;
+        _buttonCornerRadius = _buttonCornerRadius ? : 10;
         
         _topButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _topButton.titleLabel.font = _buttonFont;
         [_topButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _topButton.adjustsImageWhenHighlighted = YES;
         _topButton.backgroundColor = _buttonBackgroundColor;
-        [_topButton.layer setCornerRadius:*(_buttonCornerRadius)];
-        [_topButton.layer setBorderWidth:*(_buttonBorderWidth)];
+        [_topButton.layer setCornerRadius:_buttonCornerRadius];
+        [_topButton.layer setBorderWidth:_buttonBorderWidth];
         [_topButton.layer setBorderColor:_buttonBorderColor.CGColor];
         [_topButton.layer setMasksToBounds:YES];
         
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _bottomButton.titleLabel.font = _buttonFont;
         [_bottomButton setTitleColor:_buttonFontColor forState:UIControlStateNormal];
-        [_bottomButton.layer setCornerRadius:*(_buttonCornerRadius)];
-        [_bottomButton.layer setBorderWidth:*(_buttonBorderWidth)];
+        [_bottomButton.layer setCornerRadius:_buttonCornerRadius];
+        [_bottomButton.layer setBorderWidth:_buttonBorderWidth];
         [_bottomButton.layer setBorderColor:_buttonBackgroundColor.CGColor];
         [_bottomButton.layer setMasksToBounds:YES];
         
