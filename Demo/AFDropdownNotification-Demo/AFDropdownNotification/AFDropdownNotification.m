@@ -43,16 +43,21 @@
         _notificationView.backgroundColor = [UIColor whiteColor];
         
         _titleLabel = [UILabel new];
-        _titleLabel.font = _titleLabelFont;
-        _titleLabel.textColor = _titleLabelColor;
+        _titleLabel.font = _titleLabelFont ? : [UIFont systemFontOfSize:15];
+        _titleLabel.textColor = _titleLabelColor ? : [UIColor blackColor];
         
         _subtitleLabel = [UILabel new];
-        _subtitleLabel.font = _subtitleLabelFont;
+        _subtitleLabel.font = _subtitleLabelFont ? : [UIFont systemFontOfSize:13];
         _subtitleLabel.numberOfLines = 0;
-        _subtitleLabel.textColor = _subtitleLabelColor;
+        _subtitleLabel.textColor = _subtitleLabelColor ? : [UIColor blackColor];
         
         _imageView = [UIImageView new];
         _imageView.image = nil;
+        
+        _buttonBackgroundColor = _buttonBackgroundColor ? : [UIColor clearColor];
+        _buttonBorderColor = _buttonBorderColor ? : [UIColor grayColor];
+        _buttonBorderWidth = _buttonBorderWidth ? : (CGFloat *)1;
+        _buttonCornerRadius = _buttonCornerRadius ? : (CGFloat *)10;
         
         _topButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _topButton.titleLabel.font = _buttonFont;
@@ -107,6 +112,7 @@
         [[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:_notificationView];
         
         if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+            _blurEffectStyle = _blurEffectStyle ? : UIBlurEffectStyleLight;
             UIVisualEffect *visualEffect = [UIBlurEffect effectWithStyle:_blurEffectStyle];
             UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:visualEffect];
             blurView.frame = _notificationView.bounds;
