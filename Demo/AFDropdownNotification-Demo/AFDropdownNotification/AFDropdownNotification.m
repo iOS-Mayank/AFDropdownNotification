@@ -43,39 +43,17 @@
         _notificationView.backgroundColor = [UIColor whiteColor];
         
         _titleLabel = [UILabel new];
-        _titleLabel.font = _titleLabelFont ? : [UIFont systemFontOfSize:15];
-        _titleLabel.textColor = _titleLabelColor ? : [UIColor blackColor];
         
         _subtitleLabel = [UILabel new];
-        _subtitleLabel.font = _subtitleLabelFont ? : [UIFont systemFontOfSize:13];
         _subtitleLabel.numberOfLines = 0;
-        _subtitleLabel.textColor = _subtitleLabelColor ? : [UIColor blackColor];
         
         _imageView = [UIImageView new];
         _imageView.image = nil;
         
-        _buttonBackgroundColor = _buttonBackgroundColor ? : [UIColor clearColor];
-        _buttonBorderColor = _buttonBorderColor ? : [UIColor grayColor];
-        _buttonBorderWidth = _buttonBorderWidth ? : 1;
-        _buttonCornerRadius = _buttonCornerRadius ? : 10;
-        
         _topButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _topButton.titleLabel.font = _buttonFont;
-        [_topButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         _topButton.adjustsImageWhenHighlighted = YES;
-        _topButton.backgroundColor = _buttonBackgroundColor;
-        [_topButton.layer setCornerRadius:_buttonCornerRadius];
-        [_topButton.layer setBorderWidth:_buttonBorderWidth];
-        [_topButton.layer setBorderColor:_buttonBorderColor.CGColor];
-        [_topButton.layer setMasksToBounds:YES];
         
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _bottomButton.titleLabel.font = _buttonFont;
-        [_bottomButton setTitleColor:_buttonFontColor forState:UIControlStateNormal];
-        [_bottomButton.layer setCornerRadius:_buttonCornerRadius];
-        [_bottomButton.layer setBorderWidth:_buttonBorderWidth];
-        [_bottomButton.layer setBorderColor:_buttonBorderColor.CGColor];
-        [_bottomButton.layer setMasksToBounds:YES];
         
         _screenSize = [[UIScreen mainScreen] bounds].size;
         
@@ -94,6 +72,36 @@
         _subtitleLabel.text = _subtitleText;
         [_topButton setTitle:_topButtonText forState:UIControlStateNormal];
         [_bottomButton setTitle:_bottomButtonText forState:UIControlStateNormal];
+        
+        _titleLabel.font = _titleLabelFont ? : [UIFont systemFontOfSize:15];
+        _titleLabel.textColor = _titleLabelColor ? : [UIColor blackColor];
+        
+        _subtitleLabel.font = _subtitleLabelFont ? : [UIFont systemFontOfSize:13];
+        _subtitleLabel.textColor = _subtitleLabelColor ? : [UIColor blackColor];
+        
+        _topButtonBackgroundColor = _topButtonBackgroundColor ? : [UIColor clearColor];
+        _topButtonBorderColor = _topButtonBorderColor ? : [UIColor grayColor];
+        
+        _buttonBorderWidth = _buttonBorderWidth ? : 1;
+        _buttonCornerRadius = _buttonCornerRadius ? : 10;
+        
+        _topButton.backgroundColor = _topButtonBackgroundColor;
+        _topButton.titleLabel.font = _buttonFont;
+        [_topButton setTitleColor:_topButtonTextColor forState:UIControlStateNormal];
+        [_topButton.layer setCornerRadius:_buttonCornerRadius];
+        [_topButton.layer setBorderWidth:_buttonBorderWidth];
+        [_topButton.layer setBorderColor:_topButtonBorderColor.CGColor];
+        [_topButton.layer setMasksToBounds:YES];
+        
+        _bottomButtonBackgroundColor = _bottomButtonBackgroundColor ? : [UIColor clearColor];
+        _bottomButtonBorderColor = _bottomButtonBorderColor ? : [UIColor grayColor];
+        
+        _bottomButton.titleLabel.font = _buttonFont;
+        [_bottomButton setTitleColor:_bottomButtonTextColor forState:UIControlStateNormal];
+        [_bottomButton.layer setCornerRadius:_buttonCornerRadius];
+        [_bottomButton.layer setBorderWidth:_buttonBorderWidth];
+        [_bottomButton.layer setBorderColor:_bottomButtonBorderColor.CGColor];
+        [_bottomButton.layer setMasksToBounds:YES];
         
         NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - kDropdownImageSize - kDropdownPadding - kDropdownPadding - kDropdownButtonWidth - kDropdownPadding);
         NSInteger titleHeight = [_titleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:kDropdownTitleFontSize]} context:nil].size.height;
