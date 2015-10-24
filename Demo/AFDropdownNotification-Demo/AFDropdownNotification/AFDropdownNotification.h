@@ -22,7 +22,8 @@
 typedef NS_ENUM(NSInteger, AFDropdownNotificationEvent) {
     AFDropdownNotificationEventTopButton,
     AFDropdownNotificationEventBottomButton,
-    AFDropdownNotificationEventTap
+    AFDropdownNotificationEventTap,
+    AFDropdownNotificationEventSwipe
 };
 
 typedef void (^block)(AFDropdownNotificationEvent event);
@@ -60,5 +61,6 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 -(void)dismissWithGravityAnimation:(BOOL)animation;
 
 @property (nonatomic) BOOL dismissOnTap;
+@property (nonatomic) BOOL dismissOnSwipeUp;
 
 @end

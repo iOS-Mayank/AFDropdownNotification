@@ -58,6 +58,7 @@
         _screenSize = [[UIScreen mainScreen] bounds].size;
 
         _dismissOnTap = NO;
+        _dismissOnSwipeUp = YES;
     }
 
     return self;
@@ -173,6 +174,13 @@
             tap.numberOfTapsRequired = 1;
             [_notificationView addGestureRecognizer:tap];
         }
+        
+        if (_dismissOnSwipeUp) {
+            
+            UIPanGestureRecognizer *swipeUp = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+            [_notificationView addGestureRecognizer:swipeUp];
+            
+        }
 
         if (animation) {
 
@@ -236,6 +244,12 @@
 
             _internalBlock(AFDropdownNotificationEventTap);
         }
+    } else if ([sender isKindOfClass:[UIPanGestureRecognizer class]]) {
+        
+        if (_internalBlock) {
+            
+            _internalBlock(AFDropdownNotificationEventSwipe);
+        }
     }
 }
 
@@ -289,6 +303,18 @@
             block(event);
         }
     };
+}
+
+-(void)handlePan:(UIPanGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateChanged || recognizer.state == UIGestureRecognizerStateEnded) {
+        CGPoint velocity = [recognizer velocityInView:_notificationView];
+        if (velocity.y < 0) {
+            if (recognizer.state == UIGestureRecognizerStateEnded) {
+                NSLog(@"Swipe up");
+                [self dismiss:recognizer];
+            }
+        }
+    }
 }
 
 @end

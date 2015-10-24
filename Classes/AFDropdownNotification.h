@@ -22,7 +22,8 @@
 typedef NS_ENUM(NSInteger, AFDropdownNotificationEvent) {
     AFDropdownNotificationEventTopButton,
     AFDropdownNotificationEventBottomButton,
-    AFDropdownNotificationEventTap
+    AFDropdownNotificationEventTap,
+    AFDropdownNotificationEventSwipe
 };
 
 typedef void (^block)(AFDropdownNotificationEvent event);

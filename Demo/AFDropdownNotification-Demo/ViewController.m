@@ -32,6 +32,7 @@
     _notification.topButtonText = @"Accept";
     _notification.bottomButtonText = @"Cancel";
     _notification.dismissOnTap = YES;
+    _notification.dismissOnSwipeUp = YES;
     [_notification presentInView:self.view withGravityAnimation:YES];
     
     [_notification listenEventsWithBlock:^(AFDropdownNotificationEvent event) {
