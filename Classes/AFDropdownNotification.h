@@ -61,5 +61,6 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 -(void)dismissWithGravityAnimation:(BOOL)animation;
 
 @property (nonatomic) BOOL dismissOnTap;
+@property (nonatomic) BOOL dismissOnSwipeUp;
 
 @end
