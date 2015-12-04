@@ -115,8 +115,7 @@
         }
 
         _notificationView.frame = CGRectMake(0, -notificationHeight, [[UIScreen mainScreen] bounds].size.width, notificationHeight);
-        _notificationView.backgroundColor = [UIColor clearColor];
-
+        
         [[[UIApplication sharedApplication] keyWindow] addSubview:_notificationView];
         [[[UIApplication sharedApplication] keyWindow] bringSubviewToFront:_notificationView];
 
@@ -126,8 +125,6 @@
             UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:visualEffect];
             blurView.frame = _notificationView.bounds;
             [_notificationView addSubview:blurView];
-        } else {
-            _notificationView.backgroundColor = [UIColor whiteColor];
         }
 
         _imageView.frame = CGRectMake(kDropdownPadding, (notificationHeight / 2) - (kDropdownImageSize / 2) + (20 / 2), kDropdownImageSize, kDropdownImageSize);
