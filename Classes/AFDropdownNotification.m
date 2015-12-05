@@ -41,6 +41,7 @@
 
         _notificationView = [UIView new];
         _notificationView.backgroundColor = [UIColor whiteColor];
+        _notificationHeight = 0.0f
 
         _titleLabel = [UILabel new];
 
@@ -56,7 +57,7 @@
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
 
         _screenSize = [[UIScreen mainScreen] bounds].size;
-
+        
         _dismissOnTap = NO;
         _dismissOnSwipeUp = YES;
     }
@@ -76,9 +77,12 @@
         
         _titleLabel.font = _titleLabelFont ? : [UIFont systemFontOfSize:15];
         _titleLabel.textColor = _titleLabelColor ? : [UIColor blackColor];
+        _titleLabel.numberOfLines = 1;
         
         _subtitleLabel.font = _subtitleLabelFont ? : [UIFont systemFontOfSize:13];
         _subtitleLabel.textColor = _subtitleLabelColor ? : [UIColor blackColor];
+        _subtitleLabel.numberOfLines = 3;
+        _subtitleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
         _topButtonBackgroundColor = _topButtonBackgroundColor ? : [UIColor clearColor];
         _topButtonBorderColor = _topButtonBorderColor ? : [UIColor grayColor];
@@ -104,14 +108,18 @@
         [_bottomButton.layer setBorderColor:_bottomButtonBorderColor.CGColor];
         [_bottomButton.layer setMasksToBounds:YES];
 
-        NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - kDropdownImageSize - kDropdownPadding - kDropdownPadding - kDropdownButtonWidth - kDropdownPadding);
+        NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - kDropdownImageSize - kDropdownPadding - kDropdownPadding - (_topButtonText.length || _bottomButton ? kDropdownButtonWidth - kDropdownPadding : 0));
+        
         NSInteger titleHeight = [_titleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:kDropdownTitleFontSize]} context:nil].size.height;
         NSInteger subtitleHeight = [_subtitleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:kDropdownSubtitleFontSize]} context:nil].size.height;
         NSInteger notificationHeight = (20 + kDropdownPadding + titleHeight + (kDropdownPadding / 2) + subtitleHeight + kDropdownPadding);
 
-        if (notificationHeight < 100) {
-
-            notificationHeight = 100;
+        if (notificationHeight < 64) {
+            notificationHeight = 64;
+        }
+        
+        if (_notificationHeight != notificationHeight && notificationHeight > 0.0f) {
+            notificationHeight = _notificationHeight;
         }
 
         _notificationView.frame = CGRectMake(0, -notificationHeight, [[UIScreen mainScreen] bounds].size.width, notificationHeight);
@@ -139,13 +147,19 @@
             }
         }
 
-        _titleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding, 20 + kDropdownPadding, textWidth, titleHeight);
+        _titleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding,
+                                       20 + kDropdownPadding,
+                                       textWidth,
+                                       titleHeight);
 
         if (_titleText) {
             [_notificationView addSubview:_titleLabel];
         }
 
-        _subtitleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding, _titleLabel.frame.origin.y + _titleLabel.frame.size.height + 3, textWidth, subtitleHeight);
+        _subtitleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding,
+                                          _titleLabel.frame.origin.y + _titleLabel.frame.size.height + 3,
+                                          textWidth,
+                                          subtitleHeight);
 
         if (_subtitleText) {
             [_notificationView addSubview:_subtitleLabel];

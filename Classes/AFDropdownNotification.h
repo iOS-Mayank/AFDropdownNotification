@@ -31,6 +31,7 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 @property (nonatomic, strong) id<AFDropdownNotificationDelegate> notificationDelegate;
 
 @property (nonatomic, strong) UIView *notificationView;
+@property (nonatomic) CGFloat notificationHeight;
 
 @property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) NSString *subtitleText;
