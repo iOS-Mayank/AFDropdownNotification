@@ -41,7 +41,7 @@
 
         _notificationView = [UIView new];
         _notificationView.backgroundColor = [UIColor whiteColor];
-        _notificationHeight = 0.0f
+        _notificationHeight = 0.0f;
 
         _titleLabel = [UILabel new];
 
