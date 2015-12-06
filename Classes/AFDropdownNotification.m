@@ -160,7 +160,7 @@
         _subtitleLabel.frame = CGRectMake(kDropdownPadding + _imageHeight + kDropdownPadding,
                                           (_titleText.length ? _titleLabel.frame.origin.y + _titleLabel.frame.size.height + 3 : 20),
                                           textWidth,
-                                          subtitleHeight);
+                                          _notificationHeight - 20);
 
         if (_subtitleText) {
             [_notificationView addSubview:_subtitleLabel];
