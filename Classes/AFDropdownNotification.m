@@ -82,7 +82,7 @@
         
         _subtitleLabel.font = _subtitleLabelFont ? : [UIFont systemFontOfSize:13];
         _subtitleLabel.textColor = _subtitleLabelColor ? : [UIColor blackColor];
-        _subtitleLabel.numberOfLines = 3;
+        _subtitleLabel.numberOfLines = 2;
         _subtitleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         
         _topButtonBackgroundColor = _topButtonBackgroundColor ? : [UIColor clearColor];
@@ -109,7 +109,7 @@
         [_bottomButton.layer setBorderColor:_bottomButtonBorderColor.CGColor];
         [_bottomButton.layer setMasksToBounds:YES];
 
-        NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - _imageHeight - kDropdownPadding - kDropdownPadding - (_topButtonText.length || _bottomButton ? kDropdownButtonWidth - kDropdownPadding : 0));
+        NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - _imageHeight - kDropdownPadding - kDropdownPadding - (_topButtonText.length ? kDropdownButtonWidth - kDropdownPadding : 0));
         
         NSInteger titleHeight = [_titleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:kDropdownTitleFontSize]} context:nil].size.height;
         NSInteger subtitleHeight = [_subtitleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:kDropdownSubtitleFontSize]} context:nil].size.height;
@@ -149,7 +149,7 @@
         }
 
         _titleLabel.frame = CGRectMake(kDropdownPadding + _imageHeight + kDropdownPadding,
-                                       20 + kDropdownPadding,
+                                       20,
                                        textWidth,
                                        titleHeight);
 
@@ -158,7 +158,7 @@
         }
 
         _subtitleLabel.frame = CGRectMake(kDropdownPadding + _imageHeight + kDropdownPadding,
-                                          _titleLabel.frame.origin.y + _titleLabel.frame.size.height + 3,
+                                          (_titleText.length ? _titleLabel.frame.origin.y + _titleLabel.frame.size.height + 3 : 20),
                                           textWidth,
                                           subtitleHeight);
 
