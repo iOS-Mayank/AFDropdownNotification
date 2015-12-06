@@ -50,6 +50,7 @@
 
         _imageView = [UIImageView new];
         _imageView.image = nil;
+        _imageHeight = kDropdownImageSize;
 
         _topButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _topButton.adjustsImageWhenHighlighted = YES;
@@ -108,7 +109,7 @@
         [_bottomButton.layer setBorderColor:_bottomButtonBorderColor.CGColor];
         [_bottomButton.layer setMasksToBounds:YES];
 
-        NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - kDropdownImageSize - kDropdownPadding - kDropdownPadding - (_topButtonText.length || _bottomButton ? kDropdownButtonWidth - kDropdownPadding : 0));
+        NSInteger textWidth = ([[UIScreen mainScreen] bounds].size.width - kDropdownPadding - _imageHeight - kDropdownPadding - kDropdownPadding - (_topButtonText.length || _bottomButton ? kDropdownButtonWidth - kDropdownPadding : 0));
         
         NSInteger titleHeight = [_titleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Medium" size:kDropdownTitleFontSize]} context:nil].size.height;
         NSInteger subtitleHeight = [_subtitleLabel.text boundingRectWithSize:CGSizeMake(textWidth, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:kDropdownSubtitleFontSize]} context:nil].size.height;
@@ -135,19 +136,19 @@
             [_notificationView addSubview:blurView];
         }
 
-        _imageView.frame = CGRectMake(kDropdownPadding, (notificationHeight / 2) - (kDropdownImageSize / 2) + (20 / 2), kDropdownImageSize, kDropdownImageSize);
+        _imageView.frame = CGRectMake(kDropdownPadding, (notificationHeight / 2) - (_imageHeight / 2) + (20 / 2), _imageHeight, _imageHeight);
 
         if (_image) {
             [_notificationView addSubview:_imageView];
 
             if (self.isImageRounded) {
                 self.imageView.clipsToBounds = YES;
-                self.imageView.layer.cornerRadius = kDropdownImageSize/2;
+                self.imageView.layer.cornerRadius = _imageHeight/2;
                 self.imageView.image = _image;
             }
         }
 
-        _titleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding,
+        _titleLabel.frame = CGRectMake(kDropdownPadding + _imageHeight + kDropdownPadding,
                                        20 + kDropdownPadding,
                                        textWidth,
                                        titleHeight);
@@ -156,7 +157,7 @@
             [_notificationView addSubview:_titleLabel];
         }
 
-        _subtitleLabel.frame = CGRectMake(kDropdownPadding + kDropdownImageSize + kDropdownPadding,
+        _subtitleLabel.frame = CGRectMake(kDropdownPadding + _imageHeight + kDropdownPadding,
                                           _titleLabel.frame.origin.y + _titleLabel.frame.size.height + 3,
                                           textWidth,
                                           subtitleHeight);

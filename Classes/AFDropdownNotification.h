@@ -36,6 +36,8 @@ typedef void (^block)(AFDropdownNotificationEvent event);
 @property (nonatomic, strong) NSString *titleText;
 @property (nonatomic, strong) NSString *subtitleText;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic) CGFloat imageHeight;
+
 @property (nonatomic, strong) NSString *topButtonText;
 @property (nonatomic, strong) NSString *bottomButtonText;
 @property (nonatomic, strong) UIFont *titleLabelFont;
